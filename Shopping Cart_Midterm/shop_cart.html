@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Shopping Cart</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<style type="text/css">
+		@import url('https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css');
+
+		*{
+			padding: 0;
+			margin: 0;
+			color: #454545;
+			font-family: 'Patrick Hand', cursive;
+			
+		}
+
+		header{
+			width: 100%;
+			height: 100px;
+			background-color: #282828;
+		}
+
+		h1{
+			position: absolute;
+			padding: 20px;
+			float: left;
+			margin-left: 2%;
+			margin-top: 10px;
+			color: 	#FFFFFF;
+			font-weight: bold;
+		}
+
+		span{
+			color: 	#ff4500;
+		}
+
+		ul{
+			width: auto;
+			float: right;
+			margin-top: 8px;
+		}
+
+		li{
+			display: inline-block;
+			padding: 20px 40px;
+		}
+
+		a{
+			text-align: center;
+			color: #ffffff;
+			text-decoration: none;
+			font-family: 'Open Sans', sans-serif;
+			font-size: 1.2vw;
+		}
+
+		a:hover{
+			color: #F0c330;
+			transition: 0.5s;
+		}
+
+		img{
+			width: 100%;
+			margin-top: -16px;
+		}
+		h2 {
+			width: 3%;
+			position: relative;
+			top: 60%;
+			left: 70%;
+			cursor: pointer;
+		}
+
+		h2:before{
+			content: attr(data-count);
+			position: absolute;
+			color: white;
+			right: 16px;
+			font-size: 15px;
+			text-align: center;
+			top: -1px;
+			width: 20px;
+			height: 20px;
+			background: maroon;
+			border-radius: 50%;
+			opacity: 0;
+		}
+
+		h2.zero:before {
+			opacity: 1;
+		}
+		section{
+			width: 90%;
+			height: 330px;
+			display: flex;
+			justify-content: space-around;
+			margin: 100px auto;
+		}
+
+		section div{
+			width: -20%;
+			height: 90%;
+			background: black;
+			padding: 0;
+			position: relative;
+		}
+
+		img{
+			width: 300px;
+			height: 186px;
+		}
+
+		p {
+			margin: 5px;
+			color: orangered;
+			font-size: 20px;
+			font-weight: bold;
+		}
+
+		h6{
+			width: 50px;
+			padding: 5px;
+			margin: 10px;
+			font-size: 15px;
+			color: orangered;
+		}
+
+		button{
+			padding: 5px;
+			font-weight: bold;
+			background: orangered;
+			border: none;
+			outline: none;
+			color: #fafafa;
+			cursor: pointer;
+			font-size: 15px;
+			font-family: Arial, Helvetica, sans-serif;
+			border-radius: 4px;
+		}
+
+		section div span {
+			position: absolute;
+			top: 14px;
+			left: 13px;
+			width: 300px;
+			height: 186px;
+			display: none;
+		}
+		section div span img {
+			width: 100%;
+			height: 100%;
+		}
+		section div:nth-child(1)>span.active{
+			animation: first 0.5s ease-in;
+			z-index: 2;
+			display: block;
+		}
+
+		section div:nth-child(2)>span.active{
+			animation: second 0.5s ease-in;
+			z-index: 2;
+			display: block;
+		}
+
+		section div:nth-child(3)>span.active{
+			animation: third 0.5s ease-in;
+			z-index: 2;
+			display: block;
+		}
+
+		section div:nth-child(4)>span.active{
+			animation: four 0.5s ease-in;
+			z-index: 2;
+			display: block;
+		}
+
+		@keyframes first{
+			to{
+				width: 30px;
+				height: 20px;
+				left: 1290px;
+				top: -70px;
+			}
+		}
+
+		@keyframes second{
+			to{
+				width: 30px;
+				height: 20px;
+				left: 948px;
+				top: -70px;
+			}
+		}
+
+		@keyframes third{
+			to{
+				width: 30px;
+				height: 20px;
+				left: 606px;
+				top: -70px;
+			}
+		}
+
+		@keyframes four{
+			to{
+				width: 30px;
+				height: 20px;
+				left: 265px;
+				top: -70px;
+			}
+		}
+
+		.select{
+			width: 60%;
+			height: 580px;
+			padding: 5%;
+			background: #222;
+			position: absolute;
+			top: -1000px;
+			left: 20%;
+			transition: 0.5s;
+			overflow-y: auto;;
+			margin: auto;
+		}
+		.select.display{
+			top: 10px;
+		}
+		.select div {
+			width: 100%;
+			height: 200px;
+			display: flex;
+			padding: 5px;
+			border: 1px solid white;
+			position: relative;
+			margin: 5px auto;
+		}
+		.select div img {
+			width: 300px;
+			height: 186px;
+			margin-top: 2px;
+		}
+
+		.select div p {
+			padding: 35px;
+			color: floralwhite;
+		}
+
+		.select div h6,
+		.select div button {
+			position: absolute;
+			left: 45%;
+			top: 50%;
+			color: white;
+		}
+		.select div button {
+			left: 60%;
+			top: 55%;
+		}
+		.select div span {
+			display: none;
+		}
+
+	</style>
+</head>
+<body>
+	<header>
+		<h1>MA'<span>PIZZA</span></h1>
+		<nav>
+			<ul>
+				<li><a href="#">Home</a></li>
+				<li><a href="#">About</a></li>
+				<li><a href="#">Contact</a></li>
+				<li><h2><i class="fa fa-shopping-cart" style="font-size:30px;color:orangered;"></i></h2></li>
+			</ul>
+		</nav>
+	</header>
+	
+	<section>
+		<div>
+			<img src="images/p1_cheeze.jpg">
+			<p>Cheeze Pizza</p>
+			<h6>₱761</h6>
+			<span></span>
+			<button>Add to cart</button>
+		</div>
+		<div>
+			<img src="images/p2_veggie.jpg">
+			<p>Veggie Pizza</p>
+			<h6>₱650</h6>
+			<span></span>
+			<button>Add to cart</button>
+		</div>
+		<div>
+			<img src="images/p3_pepperoni.jpg">
+			<p>Pepperoni Pizza</p>
+			<h6>₱890</h6>
+			<span></span>
+			<button>Add to cart</button>
+		</div>
+		<div>
+			<img src="images/p4_meat.jpg">
+			<p>Meat Pizza</p>
+			<h6>₱799</h6>
+			<span></span>
+			<button>Add to cart</button>
+		</div>
+	</section>
+	<div class="select">
+		
+	</div>
+</body>
+</html>
+
+<script type="text/javascript">
+	var noti = document.querySelector('h2');
+	var select = document.querySelector('.select');
+	var button = document.getElementsByTagName('button');
+	for(but of button)
+	{
+		but.addEventListener('click', (e)=>{
+			var add = Number(noti.getAttribute('data-count')|| 0);
+			noti.setAttribute('data-count', add + 1);
+			noti.classList.add('zero');
+
+			var parent = e.target.parentNode;
+			var clone = parent.cloneNode(true);
+			select.appendChild(clone);
+			clone.lastElementChild.innerText = "Buy now";
+			if (clone) {
+				noti.onclick =()=>{
+					select.classList.toggle('display');
+				}
+			}
+
+			var image = e.target.parentNode.querySelector('img');
+			var span = e.target.parentNode.querySelector('span');
+			var s_image = image.cloneNode(false);
+			span.appendChild(s_image);
+			span.classList.add('active');
+			setTimeout(()=>{
+				span.removeChild(s_image);
+				span.classList.remove('active');
+			}, 500);
+		})
+	}
+</script>
